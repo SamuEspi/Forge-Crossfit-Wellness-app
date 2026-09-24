@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:CrossfitWellnessApp.Models"
+             x:Class="CrossfitWellnessApp.FavoritosPage"
+             BackgroundColor="#0A0A0A"
+             Shell.NavBarIsVisible="False"
+             Title="Mis Favoritos">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- CABECERA -->
+        <VerticalStackLayout Grid.Row="0"
+                             Padding="22,40,22,16"
+                             Spacing="4">
+            <Label Text="⚡ FORGE"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   TextColor="#9FE870"
+                   CharacterSpacing="1" />
+            <Label Text="Mis Favoritos"
+                   FontSize="14"
+                   TextColor="#8A8A8A"
+                   CharacterSpacing="2" />
+        </VerticalStackLayout>
+
+        <!-- LISTA DE FAVORITOS -->
+        <CollectionView Grid.Row="1"
+                        x:Name="CvFavoritos"
+                        Margin="22,0,22,0"
+                        SelectionMode="None">
+
+            <CollectionView.EmptyView>
+                <VerticalStackLayout Padding="40" Spacing="14" HorizontalOptions="Center">
+                    <Label Text="💔"
+                           FontSize="60"
+                           HorizontalOptions="Center" />
+                    <Label Text="Aún no tienes favoritos"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#FFFFFF"
+                           HorizontalOptions="Center" />
+                    <Label Text="Toca el corazón en las rutinas para guardarlas aquí"
+                           FontSize="13"
+                           TextColor="#8A8A8A"
+                           HorizontalTextAlignment="Center"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:FavoritoItem">
+                    <Border BackgroundColor="#141414"
+                            Stroke="#1F1F1F"
+                            StrokeThickness="1"
+                            Padding="18"
+                            Margin="0,0,0,12">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="18" />
+                        </Border.StrokeShape>
+
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFavoritoTapped" />
+                        </Border.GestureRecognizers>
+
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+
+                            <!-- ICONO FIJO -->
+                            <Label Grid.Column="0"
+                                   Text="⭐"
+                                   FontSize="30"
+                                   VerticalOptions="Center" />
+
+                            <!-- DATOS -->
+                            <VerticalStackLayout Grid.Column="1" Spacing="4" VerticalOptions="Center">
+                                <Label Text="{Binding Titulo}"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       TextColor="#FFFFFF"
+                                       LineBreakMode="WordWrap" />
+                                <Label Text="{Binding Subtitulo}"
+                                       FontSize="13"
+                                       TextColor="#9FE870" />
+                            </VerticalStackLayout>
+
+                            <!-- BOTÓN ELIMINAR -->
+                            <Border Grid.Column="2"
+                                    BackgroundColor="#0F0F0F"
+                                    Stroke="#FF6B6B"
+                                    StrokeThickness="1"
+                                    WidthRequest="40"
+                                    HeightRequest="40"
+                                    VerticalOptions="Center">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="20" />
+                                </Border.StrokeShape>
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnEliminarTapped" />
+                                </Border.GestureRecognizers>
+                                <Label Text="🗑️"
+                                       FontSize="18"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                            </Border>
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- BOTÓN VOLVER -->
+        <Button Grid.Row="2"
+                Text="← VOLVER AL PANEL"
+                Clicked="OnVolverClicked"
+                BackgroundColor="#9FE870"
+                TextColor="#0A0A0A"
+                FontAttributes="Bold"
+                FontSize="15"
+                HeightRequest="54"
+                CornerRadius="16"
+                Margin="22,14,22,30" />
+
+    </Grid>
+</ContentPage>

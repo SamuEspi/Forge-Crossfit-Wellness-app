@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CrossfitWellnessApp.DetalleEjercicioPage"
+             BackgroundColor="#0A0A0A"
+             Shell.NavBarIsVisible="False"
+             Title="Detalle del Ejercicio">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="22,40,22,40" Spacing="20">
+
+            <!-- CABECERA -->
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="14" VerticalOptions="Center">
+                <Border Grid.Column="0"
+                        BackgroundColor="#141414"
+                        Stroke="#9FE870"
+                        StrokeThickness="1"
+                        WidthRequest="48"
+                        HeightRequest="48"
+                        VerticalOptions="Center">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="24" />
+                    </Border.StrokeShape>
+                    <Label Text="🏋️"
+                           FontSize="22"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Border>
+
+                <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                    <Label Text="⚡ FORGE"
+                           FontSize="26"
+                           FontAttributes="Bold"
+                           TextColor="#9FE870"
+                           CharacterSpacing="1" />
+                    <Label Text="Guía del ejercicio"
+                           FontSize="13"
+                           TextColor="#8A8A8A" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <!-- IMAGEN GRANDE -->
+            <Border BackgroundColor="#141414"
+                    Stroke="#1F1F1F"
+                    StrokeThickness="1"
+                    Padding="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="2" />
+                </Border.StrokeShape>
+
+                <Image x:Name="ImgEjercicio"
+                       Aspect="AspectFill"
+                       HeightRequest="600"
+                       BackgroundColor="#0F0F0F" />
+            </Border>
+
+            <!-- TÍTULO -->
+            <Label x:Name="LblNombre"
+                   Text="Nombre del ejercicio"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   TextColor="#FFFFFF"
+                   LineBreakMode="WordWrap" />
+
+            <!-- GRUPO MUSCULAR -->
+            <Border BackgroundColor="#0F0F0F"
+                    Stroke="#9FE870"
+                    StrokeThickness="1"
+                    Padding="14,6"
+                    HorizontalOptions="Start">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <Label x:Name="LblGrupoMuscular"
+                       Text="Grupo muscular"
+                       FontSize="13"
+                       TextColor="#9FE870"
+                       FontAttributes="Bold" />
+            </Border>
+
+            <BoxView HeightRequest="1" Color="#1F1F1F" />
+
+            <!-- DESCRIPCIÓN -->
+            <Border BackgroundColor="#141414"
+                    Stroke="#1F1F1F"
+                    StrokeThickness="1"
+                    Padding="20">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20" />
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="📋 Cómo se realiza"
+                           FontSize="15"
+                           FontAttributes="Bold"
+                           TextColor="#9FE870" />
+
+                    <Label x:Name="LblDescripcion"
+                           Text="Descripción del ejercicio"
+                           FontSize="15"
+                           TextColor="#C9C9C9"
+                           LineHeight="1.45"
+                           LineBreakMode="WordWrap" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- BOTÓN VOLVER -->
+            <Button Text="← VOLVER AL CATÁLOGO"
+                    Clicked="OnVolverClicked"
+                    BackgroundColor="#9FE870"
+                    TextColor="#0A0A0A"
+                    FontAttributes="Bold"
+                    FontSize="15"
+                    HeightRequest="54"
+                    CornerRadius="16"
+                    Margin="0,10,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

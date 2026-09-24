@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CrossfitWellnessApp.RegistroDiarioPage"
+             BackgroundColor="#0A0A0A"
+             Shell.NavBarIsVisible="False"
+             Title="Registro Diario">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="22,40,22,40" Spacing="20">
+
+            <!-- CABECERA -->
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="14" VerticalOptions="Center">
+                <Border Grid.Column="0"
+                        BackgroundColor="#141414"
+                        Stroke="#9FE870"
+                        StrokeThickness="1"
+                        WidthRequest="48"
+                        HeightRequest="48"
+                        VerticalOptions="Center">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="24" />
+                    </Border.StrokeShape>
+                    <Label Text="📝"
+                           FontSize="22"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Border>
+
+                <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                    <Label Text="⚡ FORGE"
+                           FontSize="26"
+                           FontAttributes="Bold"
+                           TextColor="#9FE870"
+                           CharacterSpacing="1" />
+                    <Label Text="Registro Diario"
+                           FontSize="13"
+                           TextColor="#8A8A8A" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <!-- FECHA ACTUAL -->
+            <Border BackgroundColor="#0F0F0F"
+                    Stroke="#9FE870"
+                    StrokeThickness="1"
+                    Padding="14,8">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="14" />
+                </Border.StrokeShape>
+                <Label x:Name="LblFecha"
+                       Text="Hoy"
+                       FontSize="14"
+                       TextColor="#9FE870"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+            </Border>
+
+            <!-- SALUDO -->
+            <Label x:Name="LblSaludo"
+                   Text="Hola, Atleta"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#FFFFFF" />
+
+            <!-- FORMULARIO -->
+            <Border BackgroundColor="#141414"
+                    Stroke="#1F1F1F"
+                    StrokeThickness="1"
+                    Padding="20">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20" />
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="16">
+
+                    <!-- PESO -->
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="⚖️ Peso del día (kg) — opcional"
+                               FontSize="13"
+                               TextColor="#9FE870" />
+                        <Border BackgroundColor="#0F0F0F"
+                                Stroke="#2A2A2A"
+                                StrokeThickness="1"
+                                Padding="14,2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="14" />
+                            </Border.StrokeShape>
+                            <Entry x:Name="TxtPeso"
+                                   Placeholder="Ej: 82.50"
+                                   PlaceholderColor="#5A5A5A"
+                                   TextColor="#FFFFFF"
+                                   Keyboard="Numeric"
+                                   BackgroundColor="Transparent"
+                                   FontSize="15" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- AGUA -->
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="💧 Agua consumida (ml)"
+                               FontSize="13"
+                               TextColor="#9FE870" />
+                        <Border BackgroundColor="#0F0F0F"
+                                Stroke="#2A2A2A"
+                                StrokeThickness="1"
+                                Padding="14,2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="14" />
+                            </Border.StrokeShape>
+                            <Entry x:Name="TxtAgua"
+                                   Placeholder="Ej: 3000"
+                                   PlaceholderColor="#5A5A5A"
+                                   TextColor="#FFFFFF"
+                                   Keyboard="Numeric"
+                                   BackgroundColor="Transparent"
+                                   FontSize="15" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- CALORÍAS -->
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="🔥 Calorías ingeridas"
+                               FontSize="13"
+                               TextColor="#9FE870" />
+                        <Border BackgroundColor="#0F0F0F"
+                                Stroke="#2A2A2A"
+                                StrokeThickness="1"
+                                Padding="14,2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="14" />
+                            </Border.StrokeShape>
+                            <Entry x:Name="TxtCalorias"
+                                   Placeholder="Ej: 2800"
+                                   PlaceholderColor="#5A5A5A"
+                                   TextColor="#FFFFFF"
+                                   Keyboard="Numeric"
+                                   BackgroundColor="Transparent"
+                                   FontSize="15" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- WOD COMPLETADO -->
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="🏋️ WOD completado (opcional)"
+                               FontSize="13"
+                               TextColor="#9FE870" />
+                        <Border BackgroundColor="#0F0F0F"
+                                Stroke="#2A2A2A"
+                                StrokeThickness="1"
+                                Padding="14,2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="14" />
+                            </Border.StrokeShape>
+                            <Picker x:Name="PkrRutina"
+                                    TextColor="#FFFFFF"
+                                    TitleColor="#5A5A5A"
+                                    BackgroundColor="Transparent"
+                                    FontSize="15"
+                                    Title="Selecciona una rutina" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- NOTAS -->
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="📝 Notas del día"
+                               FontSize="13"
+                               TextColor="#9FE870" />
+                        <Border BackgroundColor="#0F0F0F"
+                                Stroke="#2A2A2A"
+                                StrokeThickness="1"
+                                Padding="10">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="14" />
+                            </Border.StrokeShape>
+                            <Editor x:Name="TxtNotas"
+                                    Placeholder="¿Cómo te sentiste hoy? ¿Algo que destacar?"
+                                    PlaceholderColor="#5A5A5A"
+                                    TextColor="#FFFFFF"
+                                    BackgroundColor="Transparent"
+                                    FontSize="14"
+                                    HeightRequest="100"
+                                    AutoSize="TextChanges" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- ERROR -->
+                    <Label x:Name="LblError"
+                           TextColor="#FF6B6B"
+                           FontSize="13"
+                           IsVisible="False"
+                           HorizontalTextAlignment="Center" />
+
+                    <!-- BOTÓN GUARDAR -->
+                    <Button x:Name="BtnGuardar"
+                            Text="GUARDAR REGISTRO"
+                            Clicked="OnGuardarClicked"
+                            BackgroundColor="#9FE870"
+                            TextColor="#0A0A0A"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            HeightRequest="54"
+                            CornerRadius="16"
+                            CharacterSpacing="1" />
+
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- BOTÓN VOLVER -->
+            <Button Text="← VOLVER AL PANEL"
+                    Clicked="OnVolverClicked"
+                    BackgroundColor="Transparent"
+                    TextColor="#8A8A8A"
+                    BorderColor="#9FE870"
+                    BorderWidth="1"
+                    FontSize="14"
+                    HeightRequest="50"
+                    CornerRadius="16" />
+
+            <!-- PIE -->
+            <Label Text="© 2026 FORGE · Cada día cuenta 💪"
+                   FontSize="12"
+                   TextColor="#5A5A5A"
+                   HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

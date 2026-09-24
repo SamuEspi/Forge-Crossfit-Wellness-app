@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CrossfitWellnessApp.PerfilPage"
+             BackgroundColor="#0A0A0A"
+             Shell.NavBarIsVisible="False"
+             Title="Perfil Corporal">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="22,40,22,40" Spacing="22">
+
+            <!-- CABECERA -->
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="14" VerticalOptions="Center">
+                <Border Grid.Column="0"
+                        BackgroundColor="#141414"
+                        Stroke="#9FE870"
+                        StrokeThickness="1"
+                        WidthRequest="48"
+                        HeightRequest="48"
+                        VerticalOptions="Center">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="24" />
+                    </Border.StrokeShape>
+                    <Label Text="💪"
+                           FontSize="22"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Border>
+
+                <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                    <Label Text="⚡ FORGE"
+                           FontSize="26"
+                           FontAttributes="Bold"
+                           TextColor="#9FE870"
+                           CharacterSpacing="1" />
+                    <Label Text="Perfil Corporal"
+                           FontSize="13"
+                           TextColor="#8A8A8A" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <!-- SALUDO -->
+            <Label x:Name="LblSaludo"
+                   Text="Hola, Atleta"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#FFFFFF" />
+
+            <!-- FORMULARIO -->
+            <Border BackgroundColor="#141414"
+                    Stroke="#1F1F1F"
+                    StrokeThickness="1"
+                    Padding="20">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20" />
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="16">
+
+                    <Label Text="Datos físicos"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#9FE870" />
+
+                    <!-- PESO -->
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Peso (kg)"
+                               FontSize="13"
+                               TextColor="#9FE870" />
+                        <Border BackgroundColor="#0F0F0F"
+                                Stroke="#2A2A2A"
+                                StrokeThickness="1"
+                                Padding="14,2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="14" />
+                            </Border.StrokeShape>
+                            <Entry x:Name="TxtPeso"
+                                   Placeholder="Ej: 82.50"
+                                   PlaceholderColor="#5A5A5A"
+                                   TextColor="#FFFFFF"
+                                   Keyboard="Numeric"
+                                   BackgroundColor="Transparent"
+                                   FontSize="15" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- ALTURA -->
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Altura (m)"
+                               FontSize="13"
+                               TextColor="#9FE870" />
+                        <Border BackgroundColor="#0F0F0F"
+                                Stroke="#2A2A2A"
+                                StrokeThickness="1"
+                                Padding="14,2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="14" />
+                            </Border.StrokeShape>
+                            <Entry x:Name="TxtAltura"
+                                   Placeholder="Ej: 1.78"
+                                   PlaceholderColor="#5A5A5A"
+                                   TextColor="#FFFFFF"
+                                   Keyboard="Numeric"
+                                   BackgroundColor="Transparent"
+                                   FontSize="15" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- EDAD -->
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Edad"
+                               FontSize="13"
+                               TextColor="#9FE870" />
+                        <Border BackgroundColor="#0F0F0F"
+                                Stroke="#2A2A2A"
+                                StrokeThickness="1"
+                                Padding="14,2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="14" />
+                            </Border.StrokeShape>
+                            <Entry x:Name="TxtEdad"
+                                   Placeholder="Ej: 29"
+                                   PlaceholderColor="#5A5A5A"
+                                   TextColor="#FFFFFF"
+                                   Keyboard="Numeric"
+                                   BackgroundColor="Transparent"
+                                   FontSize="15" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- OBJETIVO -->
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Objetivo físico"
+                               FontSize="13"
+                               TextColor="#9FE870" />
+                        <Border BackgroundColor="#0F0F0F"
+                                Stroke="#2A2A2A"
+                                StrokeThickness="1"
+                                Padding="14,2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="14" />
+                            </Border.StrokeShape>
+                            <Picker x:Name="PkrObjetivo"
+                                    TextColor="#FFFFFF"
+                                    TitleColor="#5A5A5A"
+                                    BackgroundColor="Transparent"
+                                    FontSize="15">
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Pérdida de peso</x:String>
+                                        <x:String>Aumento muscular</x:String>
+                                        <x:String>Mantenimiento</x:String>
+                                        <x:String>Mejora de resistencia</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- IMC CALCULADO -->
+                    <Border BackgroundColor="#0F0F0F"
+                            Stroke="#9FE870"
+                            StrokeThickness="1"
+                            Padding="14"
+                            Margin="0,6,0,0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="14" />
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="IMC calculado"
+                                   FontSize="12"
+                                   TextColor="#9FE870" />
+                            <Label x:Name="LblImc"
+                                   Text="—"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   TextColor="#FFFFFF" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!-- ERROR -->
+                    <Label x:Name="LblErrorPerfil"
+                           TextColor="#FF6B6B"
+                           FontSize="13"
+                           IsVisible="False"
+                           HorizontalTextAlignment="Center" />
+
+                    <!-- BOTÓN GUARDAR -->
+                    <Button x:Name="BtnGuardar"
+                            Text="GUARDAR PERFIL"
+                            Clicked="OnGuardarClicked"
+                            BackgroundColor="#9FE870"
+                            TextColor="#0A0A0A"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            HeightRequest="54"
+                            CornerRadius="16"
+                            CharacterSpacing="1" />
+
+                    <!-- BOTÓN VOLVER -->
+                    <Button Text="← VOLVER AL PANEL"
+                            Clicked="OnVolverClicked"
+                            BackgroundColor="Transparent"
+                            TextColor="#8A8A8A"
+                            FontSize="13" />
+
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- PIE -->
+            <Label Text="© 2026 FORGE · Conoce tu cuerpo, entrena con datos"
+                   FontSize="12"
+                   TextColor="#5A5A5A"
+                   HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

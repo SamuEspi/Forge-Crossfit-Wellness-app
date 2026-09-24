@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CrossfitWellnessApp.DashboardPage"
+             BackgroundColor="#0A0A0A"
+             Shell.NavBarIsVisible="False"
+             Title="FORGE DASHBOARD">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="22,40,22,40" Spacing="24">
+
+            <!-- ============================================ -->
+            <!-- CABECERA CON ACCESO AL PERFIL -->
+            <!-- ============================================ -->
+            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10" VerticalOptions="Center">
+                <VerticalStackLayout Grid.Column="0" Spacing="2">
+                    <Label Text="⚡ FORGE"
+                           FontSize="30"
+                           FontAttributes="Bold"
+                           TextColor="#9FE870"
+                           CharacterSpacing="1" />
+                    <Label Text="FORGE DASHBOARD"
+                           FontSize="14"
+                           TextColor="#8A8A8A"
+                           CharacterSpacing="3" />
+                </VerticalStackLayout>
+
+                <!-- BOTÓN PERFIL (👤) -->
+                <Border Grid.Column="1"
+                        BackgroundColor="#141414"
+                        Stroke="#9FE870"
+                        StrokeThickness="1"
+                        WidthRequest="48"
+                        HeightRequest="48"
+                        VerticalOptions="Center">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="24" />
+                    </Border.StrokeShape>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnPerfilTapped" />
+                    </Border.GestureRecognizers>
+                    <Label Text="👤"
+                           FontSize="22"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Border>
+
+                <!-- BOTÓN FUEGO (🔥) DECORATIVO -->
+                <Border Grid.Column="2"
+                        BackgroundColor="#141414"
+                        Stroke="#9FE870"
+                        StrokeThickness="1"
+                        WidthRequest="48"
+                        HeightRequest="48"
+                        VerticalOptions="Center">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="24" />
+                    </Border.StrokeShape>
+                    <Label Text="🔥"
+                           FontSize="22"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Border>
+            </Grid>
+
+            <!-- ============================================ -->
+            <!-- SECCIÓN: ENTRENAMIENTOS DEL DÍA (DINÁMICO) -->
+            <!-- ============================================ -->
+            <VerticalStackLayout Spacing="12">
+                <Label x:Name="LblEncabezadoWod"
+                       Text="🏋️ Entrenamiento del Día"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="#FFFFFF" />
+
+                <!-- TARJETA WOD DEL DÍA -->
+                <Border BackgroundColor="#141414"
+                        Stroke="#1F1F1F"
+                        StrokeThickness="1"
+                        Padding="20">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20" />
+                    </Border.StrokeShape>
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnWodTapped" />
+                    </Border.GestureRecognizers>
+
+                    <VerticalStackLayout Spacing="14">
+
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Grid.Column="0"
+                                   x:Name="LblNombreRutina"
+                                   Text="Cargando rutina..."
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="#9FE870"
+                                   LineBreakMode="WordWrap" />
+                            <Label Grid.Column="1"
+                                   Text="HOY"
+                                   FontSize="11"
+                                   TextColor="#0A0A0A"
+                                   BackgroundColor="#9FE870"
+                                   Padding="10,4"
+                                   VerticalOptions="Center">
+                                <Label.Clip>
+                                    <RoundRectangleGeometry Rect="0,0,100,24" CornerRadius="10" />
+                                </Label.Clip>
+                            </Label>
+                        </Grid>
+
+                        <Label x:Name="LblNivelDia"
+                               Text="—"
+                               FontSize="13"
+                               TextColor="#A8A8A8" />
+
+                        <BoxView HeightRequest="1" Color="#1F1F1F" />
+
+                        <VerticalStackLayout x:Name="StackEjerciciosResumen"
+                                             Spacing="6" />
+
+                        <Label Text="Toca para ver el detalle completo →"
+                               FontSize="12"
+                               TextColor="#9FE870"
+                               HorizontalOptions="End"
+                               Margin="0,4,0,0" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- ACCESO AL CATÁLOGO DE EJERCICIOS -->
+                <Border BackgroundColor="#141414"
+                        Stroke="#9FE870"
+                        StrokeThickness="1"
+                        Padding="18">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="18" />
+                    </Border.StrokeShape>
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnEjerciciosTapped" />
+                    </Border.GestureRecognizers>
+
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                        <Label Grid.Column="0"
+                               Text="🏋️"
+                               FontSize="34"
+                               VerticalOptions="Center" />
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                            <Label Text="Catálogo de Ejercicios"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="#9FE870" />
+                            <Label Text="Todos los ejercicios con imágenes"
+                                   FontSize="13"
+                                   TextColor="#A8A8A8" />
+                        </VerticalStackLayout>
+
+                        <Label Grid.Column="2"
+                               Text="›"
+                               FontSize="26"
+                               TextColor="#9FE870"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <!-- ACCESO AL CALENDARIO SEMANAL -->
+                <Border BackgroundColor="#141414"
+                        Stroke="#9FE870"
+                        StrokeThickness="1"
+                        Padding="18">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="18" />
+                    </Border.StrokeShape>
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCalendarioTapped" />
+                    </Border.GestureRecognizers>
+
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                        <Label Grid.Column="0"
+                               Text="📅"
+                               FontSize="34"
+                               VerticalOptions="Center" />
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                            <Label Text="Calendario Semanal"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="#9FE870" />
+                            <Label Text="Consulta las rutinas de toda la semana"
+                                   FontSize="13"
+                                   TextColor="#A8A8A8" />
+                        </VerticalStackLayout>
+
+                        <Label Grid.Column="2"
+                               Text="›"
+                               FontSize="26"
+                               TextColor="#9FE870"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <!-- ACCESO AL REGISTRO DIARIO -->
+                <Border BackgroundColor="#141414"
+                        Stroke="#9FE870"
+                        StrokeThickness="1"
+                        Padding="18">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="18" />
+                    </Border.StrokeShape>
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnRegistroTapped" />
+                    </Border.GestureRecognizers>
+
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                        <Label Grid.Column="0"
+                               Text="📝"
+                               FontSize="34"
+                               VerticalOptions="Center" />
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                            <Label Text="Registro Diario"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="#9FE870" />
+                            <Label Text="Anota peso, agua, calorías y WOD"
+                                   FontSize="13"
+                                   TextColor="#A8A8A8" />
+                        </VerticalStackLayout>
+
+                        <Label Grid.Column="2"
+                               Text="›"
+                               FontSize="26"
+                               TextColor="#9FE870"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+
+            <!-- ============================================ -->
+            <!-- SECCIÓN: PLANES ALIMENTICIOS -->
+            <!-- ============================================ -->
+            <VerticalStackLayout Spacing="12">
+                <Label Text="🥗 Planes Alimenticios Recomendados"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="#FFFFFF" />
+
+                <!-- TARJETA: LOW-CARB -->
+                <Border BackgroundColor="#141414"
+                        Stroke="#1F1F1F"
+                        StrokeThickness="1"
+                        Padding="18">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="18" />
+                    </Border.StrokeShape>
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnLowCarbTapped" />
+                    </Border.GestureRecognizers>
+
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                        <Label Grid.Column="0"
+                               Text="🥑"
+                               FontSize="34"
+                               VerticalOptions="Center" />
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                            <Label Text="Plan Low-Carb"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="#9FE870" />
+                            <Label Text="Déficit controlado · energía estable"
+                                   FontSize="13"
+                                   TextColor="#A8A8A8" />
+                        </VerticalStackLayout>
+
+                        <Label Grid.Column="2"
+                               Text="›"
+                               FontSize="26"
+                               TextColor="#9FE870"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <!-- TARJETA: KETO PROTOCOL -->
+                <Border BackgroundColor="#141414"
+                        Stroke="#1F1F1F"
+                        StrokeThickness="1"
+                        Padding="18">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="18" />
+                    </Border.StrokeShape>
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnKetoTapped" />
+                    </Border.GestureRecognizers>
+
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                        <Label Grid.Column="0"
+                               Text="🥩"
+                               FontSize="34"
+                               VerticalOptions="Center" />
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                            <Label Text="Keto Protocol"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="#9FE870" />
+                            <Label Text="Alta grasa · baja en carbohidratos"
+                                   FontSize="13"
+                                   TextColor="#A8A8A8" />
+                        </VerticalStackLayout>
+
+                        <Label Grid.Column="2"
+                               Text="›"
+                               FontSize="26"
+                               TextColor="#9FE870"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <!-- ACCESO A CONSEJOS DE BIENESTAR -->
+                <Border BackgroundColor="#141414"
+                        Stroke="#9FE870"
+                        StrokeThickness="1"
+                        Padding="18">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="18" />
+                    </Border.StrokeShape>
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBienestarTapped" />
+                    </Border.GestureRecognizers>
+
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                        <Label Grid.Column="0"
+                               Text="💡"
+                               FontSize="34"
+                               VerticalOptions="Center" />
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                            <Label Text="Consejos de Bienestar"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="#9FE870" />
+                            <Label Text="Salud, entrenamiento y nutrición"
+                                   FontSize="13"
+                                   TextColor="#A8A8A8" />
+                        </VerticalStackLayout>
+
+                        <Label Grid.Column="2"
+                               Text="›"
+                               FontSize="26"
+                               TextColor="#9FE870"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <!-- ACCESO A FAVORITOS -->
+                <Border BackgroundColor="#141414"
+                        Stroke="#9FE870"
+                        StrokeThickness="1"
+                        Padding="18">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="18" />
+                    </Border.StrokeShape>
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnFavoritosTapped" />
+                    </Border.GestureRecognizers>
+
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                        <Label Grid.Column="0"
+                               Text="⭐"
+                               FontSize="34"
+                               VerticalOptions="Center" />
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                            <Label Text="Mis Favoritos"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="#9FE870" />
+                            <Label Text="Tus rutinas y recetas guardadas"
+                                   FontSize="13"
+                                   TextColor="#A8A8A8" />
+                        </VerticalStackLayout>
+
+                        <Label Grid.Column="2"
+                               Text="›"
+                               FontSize="26"
+                               TextColor="#9FE870"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+
+            <!-- ============================================ -->
+            <!-- PIE -->
+            <!-- ============================================ -->
+            <Label Text="Sigue forjando tu progreso 💪"
+                   FontSize="12"
+                   TextColor="#5A5A5A"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

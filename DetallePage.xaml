@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CrossfitWellnessApp.DetallePage"
+             BackgroundColor="#0A0A0A"
+             Shell.NavBarIsVisible="False"
+             Title="Detalle">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="22,40,22,40" Spacing="22">
+
+            <!-- CABECERA -->
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="14" VerticalOptions="Center">
+                <Border Grid.Column="0"
+                        BackgroundColor="#141414"
+                        Stroke="#9FE870"
+                        StrokeThickness="1"
+                        WidthRequest="48"
+                        HeightRequest="48"
+                        VerticalOptions="Center">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="24" />
+                    </Border.StrokeShape>
+                    <Label Text="⚡"
+                           FontSize="22"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Border>
+
+                <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                    <Label Text="⚡ FORGE"
+                           FontSize="26"
+                           FontAttributes="Bold"
+                           TextColor="#9FE870"
+                           CharacterSpacing="1" />
+                    <Label Text="Detalle del contenido"
+                           FontSize="13"
+                           TextColor="#8A8A8A" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <!-- TÍTULO DINÁMICO -->
+            <Label x:Name="LblTitulo"
+                   Text="Título"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="#FFFFFF"
+                   LineBreakMode="WordWrap" />
+
+            <!-- SUBTÍTULO DINÁMICO -->
+            <Label x:Name="LblSubtitulo"
+                   Text="Subtítulo"
+                   FontSize="15"
+                   TextColor="#9FE870"
+                   CharacterSpacing="1" />
+
+            <BoxView HeightRequest="1" Color="#1F1F1F" />
+
+            <!-- CONTENIDO DINÁMICO -->
+            <Border BackgroundColor="#141414"
+                    Stroke="#1F1F1F"
+                    StrokeThickness="1"
+                    Padding="20">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20" />
+                </Border.StrokeShape>
+
+                <Label x:Name="LblContenido"
+                       Text="Contenido"
+                       FontSize="15"
+                       TextColor="#C9C9C9"
+                       LineHeight="1.45"
+                       LineBreakMode="WordWrap" />
+            </Border>
+
+            <!-- BOTÓN VOLVER -->
+            <Button x:Name="BtnVolver"
+                    Text="← VOLVER AL PANEL"
+                    Clicked="OnVolverClicked"
+                    BackgroundColor="#9FE870"
+                    TextColor="#0A0A0A"
+                    FontAttributes="Bold"
+                    FontSize="15"
+                    HeightRequest="54"
+                    CornerRadius="16"
+                    CharacterSpacing="1"
+                    Margin="0,10,0,0" />
+
+            <!-- PIE -->
+            <Label Text="© 2026 FORGE · Entrena duro, come inteligente"
+                   FontSize="12"
+                   TextColor="#5A5A5A"
+                   HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

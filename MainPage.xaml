@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CrossfitWellnessApp.MainPage"
+             BackgroundColor="#0A0A0A"
+             Shell.NavBarIsVisible="False"
+             Title="FORGE">
+
+    <ScrollView>
+        <Grid RowDefinitions="Auto,*,Auto"
+              Padding="28,60,28,40"
+              RowSpacing="24">
+
+            <!-- ENCABEZADO / LOGO -->
+            <VerticalStackLayout Grid.Row="0" Spacing="8" HorizontalOptions="Center">
+                <Label Text="⚡ FORGE"
+                       FontSize="52"
+                       FontAttributes="Bold"
+                       TextColor="#9FE870"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       CharacterSpacing="2" />
+                <Label Text="Forja tu mejor versión"
+                       FontSize="15"
+                       TextColor="#8A8A8A"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+
+            <!-- FORMULARIO DE INICIO DE SESIÓN -->
+            <Border Grid.Row="1"
+                    BackgroundColor="#141414"
+                    Stroke="#1F1F1F"
+                    StrokeThickness="1"
+                    Padding="24"
+                    VerticalOptions="Center">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="22" />
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="18">
+
+                    <Label Text="Iniciar sesión"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           TextColor="#FFFFFF" />
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Correo electrónico"
+                               FontSize="13"
+                               TextColor="#9FE870" />
+                        <Border BackgroundColor="#0F0F0F"
+                                Stroke="#2A2A2A"
+                                StrokeThickness="1"
+                                Padding="14,2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="14" />
+                            </Border.StrokeShape>
+                            <Entry x:Name="TxtCorreo"
+                                   Placeholder="tucorreo@forge.com"
+                                   PlaceholderColor="#5A5A5A"
+                                   TextColor="#FFFFFF"
+                                   Keyboard="Email"
+                                   BackgroundColor="Transparent"
+                                   FontSize="15" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Contraseña"
+                               FontSize="13"
+                               TextColor="#9FE870" />
+                        <Border BackgroundColor="#0F0F0F"
+                                Stroke="#2A2A2A"
+                                StrokeThickness="1"
+                                Padding="14,2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="14" />
+                            </Border.StrokeShape>
+                            <Entry x:Name="TxtContrasena"
+                                   Placeholder="••••••••"
+                                   PlaceholderColor="#5A5A5A"
+                                   TextColor="#FFFFFF"
+                                   IsPassword="True"
+                                   BackgroundColor="Transparent"
+                                   FontSize="15" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <Label x:Name="LblError"
+                           TextColor="#FF6B6B"
+                           FontSize="13"
+                           IsVisible="False"
+                           HorizontalTextAlignment="Center" />
+
+                    <Button x:Name="BtnLogin"
+                            Text="ENTRAR"
+                            Clicked="OnLoginClicked"
+                            BackgroundColor="#9FE870"
+                            TextColor="#0A0A0A"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            HeightRequest="54"
+                            CornerRadius="16"
+                            CharacterSpacing="1" />
+
+                    <Button x:Name="BtnRegister"
+                        Text="CREAR CUENTA NUEVA"
+                        Clicked="OnRegisterClicked"
+                        BackgroundColor="Transparent"
+                        TextColor="#9FE870"
+                        BorderColor="#9FE870"
+                        BorderWidth="1"
+                        FontAttributes="Bold"
+                        FontSize="14"
+                        HeightRequest="50"
+                        CornerRadius="16"
+                        CharacterSpacing="1" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- PIE -->
+            <Label Grid.Row="2"
+                   Text="© 2026 FORGE · Entrena duro, come inteligente"
+                   FontSize="12"
+                   TextColor="#5A5A5A"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+
+        </Grid>
+    </ScrollView>
+</ContentPage>

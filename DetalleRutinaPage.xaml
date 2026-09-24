@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:CrossfitWellnessApp.Models"
+             x:Class="CrossfitWellnessApp.DetalleRutinaPage"
+             BackgroundColor="#0A0A0A"
+             Shell.NavBarIsVisible="False"
+             Title="Detalle del WOD">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="22,40,22,40" Spacing="20">
+
+            <!-- CABECERA -->
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="14" VerticalOptions="Center">
+                <Border Grid.Column="0"
+                        BackgroundColor="#141414"
+                        Stroke="#9FE870"
+                        StrokeThickness="1"
+                        WidthRequest="48"
+                        HeightRequest="48"
+                        VerticalOptions="Center">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="24" />
+                    </Border.StrokeShape>
+                    <Label Text="🏋️"
+                           FontSize="22"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Border>
+
+                <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                    <Label Text="⚡ FORGE"
+                           FontSize="26"
+                           FontAttributes="Bold"
+                           TextColor="#9FE870"
+                           CharacterSpacing="1" />
+                    <Label Text="Detalle del Entrenamiento"
+                           FontSize="13"
+                           TextColor="#8A8A8A" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <!-- TÍTULO DE LA RUTINA -->
+            <Label x:Name="LblNombreRutina"
+                   Text="Nombre de la rutina"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="#FFFFFF"
+                   LineBreakMode="WordWrap" />
+
+            <!-- BADGES DE NIVEL Y DÍA -->
+            <HorizontalStackLayout Spacing="10">
+                <Border BackgroundColor="#9FE870"
+                        Stroke="Transparent"
+                        Padding="12,5">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12" />
+                    </Border.StrokeShape>
+                    <Label x:Name="LblNivel"
+                           Text="Nivel"
+                           FontSize="12"
+                           FontAttributes="Bold"
+                           TextColor="#0A0A0A" />
+                </Border>
+
+                <Border BackgroundColor="#0F0F0F"
+                        Stroke="#9FE870"
+                        StrokeThickness="1"
+                        Padding="12,5">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12" />
+                    </Border.StrokeShape>
+                    <Label x:Name="LblDia"
+                           Text="Día"
+                           FontSize="12"
+                           TextColor="#9FE870"
+                           FontAttributes="Bold" />
+                </Border>
+            </HorizontalStackLayout>
+
+            <BoxView HeightRequest="1" Color="#1F1F1F" />
+
+            <!-- LISTA DE EJERCICIOS -->
+            <Label Text="📋 Ejercicios del WOD"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   TextColor="#9FE870" />
+
+            <CollectionView x:Name="CvEjercicios"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:EjercicioDeRutina">
+                        <Border BackgroundColor="#141414"
+                                Stroke="#1F1F1F"
+                                StrokeThickness="1"
+                                Padding="14"
+                                Margin="0,0,0,12">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="18" />
+                            </Border.StrokeShape>
+
+                            <VerticalStackLayout Spacing="10">
+
+                                <!-- IMAGEN / GIF -->
+                                <Border BackgroundColor="#0F0F0F"
+                                        Stroke="#2A2A2A"
+                                        StrokeThickness="1"
+                                        HeightRequest="180">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="14" />
+                                    </Border.StrokeShape>
+                                    <Image Source="{Binding UrlMultimedia}"
+                                           Aspect="AspectFill"
+                                           HeightRequest="500" />
+                                </Border>
+
+                                <!-- NOMBRE -->
+                                <Label Text="{Binding Nombre}"
+                                       FontSize="17"
+                                       FontAttributes="Bold"
+                                       TextColor="#FFFFFF" />
+
+                                <!-- GRUPO MUSCULAR -->
+                                <Label Text="{Binding GrupoMuscular}"
+                                       FontSize="12"
+                                       TextColor="#9FE870"
+                                       LineBreakMode="TailTruncation"
+                                       MaxLines="2" />
+
+                                <!-- SERIES Y REPS -->
+                                <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                                    <Border Grid.Column="0"
+                                            BackgroundColor="#0F0F0F"
+                                            Stroke="#9FE870"
+                                            StrokeThickness="1"
+                                            Padding="10,6">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="10" />
+                                        </Border.StrokeShape>
+                                        <Label Text="{Binding Series, StringFormat='Series: {0}'}"
+                                               FontSize="13"
+                                               TextColor="#FFFFFF"
+                                               FontAttributes="Bold"
+                                               HorizontalOptions="Center" />
+                                    </Border>
+
+                                    <Border Grid.Column="1"
+                                            BackgroundColor="#0F0F0F"
+                                            Stroke="#9FE870"
+                                            StrokeThickness="1"
+                                            Padding="10,6">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="10" />
+                                        </Border.StrokeShape>
+                                        <Label Text="{Binding Repeticiones, StringFormat='Reps: {0}'}"
+                                               FontSize="13"
+                                               TextColor="#FFFFFF"
+                                               FontAttributes="Bold"
+                                               HorizontalOptions="Center" />
+                                    </Border>
+                                </Grid>
+
+                                <!-- DESCRIPCIÓN -->
+                                <Label Text="{Binding Descripcion}"
+                                       FontSize="13"
+                                       TextColor="#A8A8A8"
+                                       LineBreakMode="WordWrap"
+                                       MaxLines="4" />
+
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- BOTÓN VOLVER -->
+            <Button Text="← VOLVER AL PANEL"
+                    Clicked="OnVolverClicked"
+                    BackgroundColor="#9FE870"
+                    TextColor="#0A0A0A"
+                    FontAttributes="Bold"
+                    FontSize="15"
+                    HeightRequest="54"
+                    CornerRadius="16"
+                    Margin="0,10,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

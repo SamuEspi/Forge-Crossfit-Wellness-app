@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:CrossfitWellnessApp.Models"
+             x:Class="CrossfitWellnessApp.CalendarioPage"
+             BackgroundColor="#0A0A0A"
+             Shell.NavBarIsVisible="False"
+             Title="Calendario Semanal">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- CABECERA -->
+        <VerticalStackLayout Grid.Row="0"
+                             Padding="22,40,22,16"
+                             Spacing="4">
+            <Label Text="⚡ FORGE"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   TextColor="#9FE870"
+                   CharacterSpacing="1" />
+            <Label Text="Calendario Semanal"
+                   FontSize="14"
+                   TextColor="#8A8A8A"
+                   CharacterSpacing="2" />
+        </VerticalStackLayout>
+
+        <!-- LISTA DE RUTINAS POR DÍA -->
+        <CollectionView Grid.Row="1"
+                        x:Name="CvRutinas"
+                        Margin="22,0,22,0"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Rutina">
+                    <Border BackgroundColor="#141414"
+                            Stroke="#1F1F1F"
+                            StrokeThickness="1"
+                            Padding="18"
+                            Margin="0,0,0,12">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="18" />
+                        </Border.StrokeShape>
+
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnRutinaTapped" />
+                        </Border.GestureRecognizers>
+
+                        <VerticalStackLayout Spacing="8">
+
+                            <!-- DÍA + BADGE HOY + CORAZÓN -->
+                            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
+                                <Label Grid.Column="0"
+                                       Text="{Binding DiaSemana}"
+                                       FontSize="12"
+                                       FontAttributes="Bold"
+                                       TextColor="#9FE870"
+                                       CharacterSpacing="2"
+                                       VerticalOptions="Center" />
+
+                                <Label Grid.Column="1"
+                                       x:Name="LblBadgeHoy"
+                                       Text="HOY"
+                                       FontSize="10"
+                                       FontAttributes="Bold"
+                                       TextColor="#0A0A0A"
+                                       BackgroundColor="#9FE870"
+                                       Padding="10,3"
+                                       IsVisible="False"
+                                       VerticalOptions="Center">
+                                    <Label.Clip>
+                                        <RoundRectangleGeometry Rect="0,0,100,22" CornerRadius="10" />
+                                    </Label.Clip>
+                                </Label>
+
+                                <!-- BOTÓN CORAZÓN -->
+                                <Border Grid.Column="2"
+                                        BackgroundColor="Transparent"
+                                        Stroke="Transparent"
+                                        WidthRequest="32"
+                                        HeightRequest="32"
+                                        VerticalOptions="Center">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnToggleFavoritoTapped" />
+                                    </Border.GestureRecognizers>
+                                    <Label x:Name="LblCorazon"
+                                           Text="🤍"
+                                           FontSize="20"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
+                                </Border>
+                            </Grid>
+
+                            <!-- NOMBRE DE LA RUTINA -->
+                            <Label Text="{Binding NombreRutina}"
+                                   FontSize="17"
+                                   FontAttributes="Bold"
+                                   TextColor="#FFFFFF"
+                                   LineBreakMode="WordWrap" />
+
+                            <!-- NIVEL -->
+                            <Border BackgroundColor="#0F0F0F"
+                                    Stroke="#9FE870"
+                                    StrokeThickness="1"
+                                    Padding="10,4"
+                                    HorizontalOptions="Start">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10" />
+                                </Border.StrokeShape>
+                                <Label Text="{Binding NivelDificultad}"
+                                       FontSize="11"
+                                       TextColor="#9FE870"
+                                       FontAttributes="Bold" />
+                            </Border>
+
+                            <!-- CTA -->
+                            <Label Text="Ver rutina →"
+                                   FontSize="12"
+                                   TextColor="#9FE870"
+                                   HorizontalOptions="End"
+                                   Margin="0,4,0,0" />
+
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- BOTÓN VOLVER -->
+        <Button Grid.Row="2"
+                Text="← VOLVER AL PANEL"
+                Clicked="OnVolverClicked"
+                BackgroundColor="#9FE870"
+                TextColor="#0A0A0A"
+                FontAttributes="Bold"
+                FontSize="15"
+                HeightRequest="54"
+                CornerRadius="16"
+                Margin="22,14,22,30" />
+
+    </Grid>
+</ContentPage>
