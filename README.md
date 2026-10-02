@@ -364,9 +364,9 @@ Proyecto académico — Ingeniería de Software
 
 ## Equipo #2
 
-- Samuel Espinoza C.I.31.458.819
-- Gustavo Chacin C.I.
-- Norluis Cubillan C.I.
+- Samuel Espinoza C.I. 31.458.819
+- Gustavo Chacin C.I. 28.406.955
+- Norluis Cubillan C.I. 28.497.772
 
 ## Año
 
