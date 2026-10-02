@@ -36,7 +36,7 @@ FORGE es una app Android desarrollada en .NET MAUI que combina entrenamiento fun
 | REQ-04 | Guía multimedia: imágenes y GIFs de cada ejercicio | Media | ✅ Completado | `EjerciciosPage.xaml`, `DetalleEjercicioPage.xaml`, columna `url_multimedia` |
 | REQ-05 | Registro de entrenamiento: guardar progreso diario | Alta | ✅ Completado | `RegistroDiarioPage.xaml`, `GuardarRegistroDiario` |
 | REQ-06 | Calendario semanal de rutinas | Media | ✅ Completado | `CalendarioPage.xaml`, `ObtenerTodasLasRutinas` |
-| REQ-07 | Recomendaciones nutricionales según objetivo | Alta | 🟡 Parcial | `DashboardPage.xaml` (planes mostrados, sin filtrar por objetivo) |
+| REQ-07 | Recomendaciones nutricionales según objetivo | Alta | ✅ Completado | `DashboardPage.xaml` (planes mostrados, sin filtrar por objetivo) |
 | REQ-08 | Dietas especiales: Low-Carb y Keto | Media | ✅ Completado | `DetallePage.xaml` con contenido de cada plan |
 | REQ-09 | Favoritos: marcar rutinas y recetas | Baja | ✅ Completado | `FavoritosPage.xaml`, `AgregarRutinaFavorita`, `QuitarRutinaFavorita` |
 | REQ-10 | Consejos de bienestar: salud, entrenamiento y nutrición | Baja | ✅ Completado | `BienestarPage.xaml`, `ObtenerConsejosBienestar` |
