@@ -7,8 +7,7 @@ public class DatabaseService
     // ============================================================
     // CONEXIÓN A POSTGRESQL
     // ============================================================
-    private const string ConnectionString =
-        "Host=crossfit22-perromomificado22-21d5.h.aivencloud.com;Port=19867;Username=avnadmin;Password=AVNS_g2ZvsWHsvyuU3hB6HZd;Database=Forge_database";
+private const string ConnectionString = DbConfig.ConnectionString;
 
     // ============================================================
     // 1. VALIDAR LOGIN
