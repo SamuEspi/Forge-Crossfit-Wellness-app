@@ -9,13 +9,13 @@ FORGE es una app Android desarrollada en .NET MAUI que combina entrenamiento fun
 ## Problema que aborda
 ## Planificación del Proyecto y Riesgos
 
-## Cronograma de Actividades e Hitos (Gantt)
+### Cronograma de Actividades e Hitos (Gantt)
 * **Hito 1 (Semanas 1-2):** Levantamiento de requisitos, actores del sistema y esquema de BD.
 * **Hito 2 (Semanas 3-4):** Arquitectura .NET MAUI, base de datos en Aiven Cloud e implementación de BCrypt.
 * **Hito 3 (Semanas 5-6):** Módulo de rutinas WOD, catálogo multimedia y diario de marcas personales.
 * **Hito 4 (Semanas 7-8):** Recomendación nutricional adaptada por objetivo y pruebas de aceptación.
 
-## Análisis de Riesgos
+### Análisis de Riesgos
 | Riesgo | Impacto | Probabilidad | Plan de Mitigación |
 | :--- | :--- | :--- | :--- |
 | Exposición de credenciales de DB | Alto | Media | Rotación de claves en Aiven Cloud y uso de `.gitignore`. |
