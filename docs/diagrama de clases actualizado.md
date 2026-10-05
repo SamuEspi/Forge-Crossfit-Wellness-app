@@ -106,34 +106,33 @@ classDiagram
     %% ============================================
     class DatabaseService {
         -string ConnectionString
-        +ValidarLogin(string, string) Task~bool~
-        +RegistrarUsuario(string, string, string) Task~bool~
-        +ObtenerUsuarioIdPorCorreo(string) Task~Guid?~
-        +ObtenerNombrePorCorreo(string) Task~string?~
+        +ValidarLogin(string, string) Task
+        +RegistrarUsuario(string, string, string) Task
+        +ObtenerUsuarioIdPorCorreo(string) Task
+        +ObtenerNombrePorCorreo(string) Task
         +ObtenerPerfilCorporal(Guid) Task
-        +GuardarPerfilCorporal(Guid, decimal, decimal, int, string) Task~bool~
-        +ObtenerTodosLosEjercicios() Task~List~
+        +GuardarPerfilCorporal(Guid, decimal, decimal, int, string) Task
+        +ObtenerTodosLosEjercicios() Task
         +ObtenerEjercicioPorId(Guid) Task
         +ObtenerRutinaDelDia(string, string) Task
-        +ObtenerEjerciciosDeRutina(Guid) Task~List~
-        +ObtenerTodasLasRutinas() Task~List~
-        +GuardarRegistroDiario(Guid, decimal?, int, int, Guid?, string) Task~bool~
+        +ObtenerEjerciciosDeRutina(Guid) Task
+        +ObtenerTodasLasRutinas() Task
+        +GuardarRegistroDiario(Guid, decimal, int, int, Guid, string) Task
         +ObtenerRegistroDelDia(Guid) Task
-        +ObtenerHistorialRegistros(Guid, int) Task~List~
-        +ObtenerConsejosBienestar() Task~List~
-        +ObtenerConsejosPorCategoria(string) Task~List~
-        +AgregarRutinaFavorita(Guid, Guid) Task~bool~
-        +QuitarRutinaFavorita(Guid, Guid) Task~bool~
-        +EsRutinaFavorita(Guid, Guid) Task~bool~
-        +ObtenerRutinasFavoritas(Guid) Task~List~
-        +ObtenerRecetasFavoritas(Guid) Task~List~
+        +ObtenerHistorialRegistros(Guid, int) Task
+        +ObtenerConsejosBienestar() Task
+        +ObtenerConsejosPorCategoria(string) Task
+        +AgregarRutinaFavorita(Guid, Guid) Task
+        +QuitarRutinaFavorita(Guid, Guid) Task
+        +EsRutinaFavorita(Guid, Guid) Task
+        +ObtenerRutinasFavoritas(Guid) Task
+        +ObtenerRecetasFavoritas(Guid) Task
     }
     class SessionService {
-        <<static>>
-        +Guid? UsuarioId
-        +string? NombreUsuario
-        +string? CorreoUsuario
-        +string? ObjetivoFisico
+        +Guid UsuarioId
+        +string NombreUsuario
+        +string CorreoUsuario
+        +string ObjetivoFisico
         +bool EstaAutenticado
         +CerrarSesion()
     }
@@ -146,7 +145,7 @@ classDiagram
         +string Nombre
         +string Descripcion
         +string GrupoMuscular
-        +string? UrlMultimedia
+        +string UrlMultimedia
     }
     class Rutina {
         +Guid Id
@@ -159,7 +158,7 @@ classDiagram
         +string Nombre
         +string Descripcion
         +string GrupoMuscular
-        +string? UrlMultimedia
+        +string UrlMultimedia
         +int Series
         +string Repeticiones
     }
@@ -172,8 +171,8 @@ classDiagram
     }
     class FavoritoItem {
         +Guid Id
-        +Guid? RutinaId
-        +Guid? RecetaId
+        +Guid RutinaId
+        +Guid RecetaId
         +string Tipo
         +string Titulo
         +string Subtitulo
@@ -197,46 +196,33 @@ classDiagram
     ContentPage <|-- DetallePage
 
     %% ============================================
-    %% RELACIONES DE USO (las pantallas usan servicios)
+    %% RELACIONES DE USO
     %% ============================================
-    MainPage ..> DatabaseService : usa
-    MainPage ..> SessionService : usa
-    RegisterPage ..> DatabaseService : usa
-    DashboardPage ..> DatabaseService : usa
-    DashboardPage ..> SessionService : usa
-    PerfilPage ..> DatabaseService : usa
-    PerfilPage ..> SessionService : usa
-    EjerciciosPage ..> DatabaseService : usa
-    CalendarioPage ..> DatabaseService : usa
-    CalendarioPage ..> SessionService : usa
-    RegistroDiarioPage ..> DatabaseService : usa
-    RegistroDiarioPage ..> SessionService : usa
-    BienestarPage ..> DatabaseService : usa
-    FavoritosPage ..> DatabaseService : usa
-    FavoritosPage ..> SessionService : usa
+    MainPage ..> DatabaseService
+    MainPage ..> SessionService
+    RegisterPage ..> DatabaseService
+    DashboardPage ..> DatabaseService
+    DashboardPage ..> SessionService
+    PerfilPage ..> DatabaseService
+    PerfilPage ..> SessionService
+    EjerciciosPage ..> DatabaseService
+    CalendarioPage ..> DatabaseService
+    CalendarioPage ..> SessionService
+    RegistroDiarioPage ..> DatabaseService
+    RegistroDiarioPage ..> SessionService
+    BienestarPage ..> DatabaseService
+    FavoritosPage ..> DatabaseService
+    FavoritosPage ..> SessionService
 
     %% ============================================
     %% RELACIONES CON MODELOS
     %% ============================================
-    DashboardPage ..> Rutina : contiene
-    DashboardPage ..> EjercicioDeRutina : contiene
-    EjerciciosPage ..> Ejercicio : contiene
-    DetalleEjercicioPage ..> Ejercicio : contiene
-    DetalleRutinaPage ..> Rutina : contiene
-    DetalleRutinaPage ..> EjercicioDeRutina : contiene
-    BienestarPage ..> ConsejoBienestar : contiene
-    FavoritosPage ..> FavoritoItem : contiene
-    RegistroDiarioPage ..> Rutina : contiene
-
-    %% ============================================
-    %% ESTILOS
-    %% ============================================
-    classDef base fill:#0A0A0A,stroke:#9FE870,stroke-width:2px,color:#9FE870
-    classDef pantalla fill:#141414,stroke:#9FE870,stroke-width:1px,color:#FFFFFF
-    classDef servicio fill:#1A2E1A,stroke:#9FE870,stroke-width:2px,color:#9FE870
-    classDef modelo fill:#2E1A2E,stroke:#9FE870,stroke-width:1px,color:#FFFFFF
-
-    class ContentPage base
-    class MainPage,RegisterPage,DashboardPage,PerfilPage,EjerciciosPage,DetalleEjercicioPage,CalendarioPage,DetalleRutinaPage,RegistroDiarioPage,BienestarPage,FavoritosPage,DetallePage pantalla
-    class DatabaseService,SessionService servicio
-    class Ejercicio,Rutina,EjercicioDeRutina,ConsejoBienestar,FavoritoItem modelo
+    DashboardPage ..> Rutina
+    DashboardPage ..> EjercicioDeRutina
+    EjerciciosPage ..> Ejercicio
+    DetalleEjercicioPage ..> Ejercicio
+    DetalleRutinaPage ..> Rutina
+    DetalleRutinaPage ..> EjercicioDeRutina
+    BienestarPage ..> ConsejoBienestar
+    FavoritosPage ..> FavoritoItem
+    RegistroDiarioPage ..> Rutina
