@@ -109,8 +109,6 @@ El requerimiento REQ-08 **no está completamente implementado**. Lo que sí exis
 - ✅ Cada plan tiene su pantalla de detalle con información completa.
 - ✅ La tabla `planes_alimenticios` incluye el campo `objetivo_asociado` con valores como "Pérdida de peso" o "Aumento muscular".
 
-Lo que **falta** para completarlo:
-
 - ❌ El Dashboard **no filtra automáticamente** los planes según el `objetivo_fisico` del usuario.
 - ❌ Un usuario con objetivo "Aumento muscular" ve los mismos planes que uno con "Pérdida de peso".
 - ❌ No hay suficiente variedad para cubrir todos los casos
