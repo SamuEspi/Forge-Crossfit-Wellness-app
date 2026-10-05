@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="CrossfitWellnessApp/Forge Crossfit.csproj">
+    <Deploy Solution="Release|*" />
+  </Project>
+</Solution>
