@@ -32,8 +32,8 @@ private const string ConnectionString = DbConfig.ConnectionString;
             if (await reader.ReadAsync())
             {
                 string hashGuardado = reader.GetString(0);
-                // 🔐 En producción: BCrypt.Verify(contrasena, hashGuardado)
-                return hashGuardado == contrasena;
+                // ✅ Verificación con BCrypt
+                return BCrypt.Net.BCrypt.Verify(contrasena, hashGuardado);
             }
 
             return false;
@@ -70,7 +70,8 @@ private const string ConnectionString = DbConfig.ConnectionString;
             await using var insertCmd = new NpgsqlCommand(insertSql, conn);
             insertCmd.Parameters.AddWithValue("nombre", nombre);
             insertCmd.Parameters.AddWithValue("correo", correo);
-            insertCmd.Parameters.AddWithValue("contrasena", contrasena);
+            string hash = BCrypt.Net.BCrypt.HashPassword(contrasena);
+            insertCmd.Parameters.AddWithValue("contrasena", hash);
 
             var nuevoId = await insertCmd.ExecuteScalarAsync();
             return nuevoId is not null;
