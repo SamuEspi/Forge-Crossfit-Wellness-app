@@ -303,7 +303,6 @@ FORGE implementa **4 patrones de diseño** reales y verificables en el código:
 
 ### Corto plazo (semanas)
 
-- Hashear todas las contraseñas con **BCrypt** (incluidos los usuarios semilla).
 - Implementar **rate limiting** en el login para prevenir ataques de fuerza bruta.
 - Añadir **logs persistentes** de acciones en la base de datos.
 
@@ -381,6 +380,13 @@ FORGE **no es un prototipo académico**: es una aplicación real, desplegada en 
 El proyecto culmina con una **app funcional, documentada y desplegada**. Las recomendaciones planteadas sirven como hoja de ruta para futuras versiones, y el código queda disponible para evolucionar en otras asignaturas, proyectos personales o portafolio profesional.
 
 ---
+
+## ⚠️ Nota de seguridad
+
+Las credenciales que puedan aparecer en commits históricos ya fueron 
+**rotadas o revocadas en Aiven**, por lo que **no representan un riesgo 
+funcional**. Las credenciales actuales se cargan desde `DbConfig.cs`, 
+que está incluido en `.gitignore`.
 
 ## 📅 Fecha
 
