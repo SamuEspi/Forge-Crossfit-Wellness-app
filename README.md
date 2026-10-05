@@ -66,35 +66,55 @@ Cliente-servidor en 3 capas:
 - Consejos de Bienestar
 - Favoritos
 
-## ✅ Requerimientos Funcionales
+## 📋 Requerimientos del proyecto
 
-| ID | Requerimiento | Prioridad | Estado | Evidencia |
-|----|---------------|-----------|--------|-----------|
-| REQ-01 | Gestión de usuarios: registro e inicio de sesión con correo y contraseña | Alta | ✅ Completado | `MainPage.xaml`, `RegisterPage.xaml`, `ValidarLogin`, `RegistrarUsuario` |
-| REQ-02 | Perfil corporal: peso, altura, edad y objetivo físico | Alta | ✅ Completado | `PerfilPage.xaml`, `GuardarPerfilCorporal`, `ObtenerPerfilCorporal` |
-| REQ-03 | Generación de rutinas según día de la semana | Alta | ✅ Completado | `DashboardPage.xaml`, `ObtenerRutinaDelDia`, `ObtenerTodasLasRutinas` |
-| REQ-04 | Guía multimedia: imágenes y GIFs de cada ejercicio | Media | ✅ Completado | `EjerciciosPage.xaml`, `DetalleEjercicioPage.xaml`, columna `url_multimedia` |
-| REQ-05 | Registro de entrenamiento: guardar progreso diario | Alta | ✅ Completado | `RegistroDiarioPage.xaml`, `GuardarRegistroDiario` |
-| REQ-06 | Calendario semanal de rutinas | Media | ✅ Completado | `CalendarioPage.xaml`, `ObtenerTodasLasRutinas` |
-| REQ-07 | Recomendaciones nutricionales según objetivo | Alta | ✅ Completado | `DashboardPage.xaml` (planes mostrados, sin filtrar por objetivo) |
-| REQ-08 | Dietas especiales: Low-Carb y Keto | Media | ✅ Completado | `DetallePage.xaml` con contenido de cada plan |
-| REQ-09 | Favoritos: marcar rutinas y recetas | Baja | ✅ Completado | `FavoritosPage.xaml`, `AgregarRutinaFavorita`, `QuitarRutinaFavorita` |
-| REQ-10 | Consejos de bienestar: salud, entrenamiento y nutrición | Baja | ✅ Completado | `BienestarPage.xaml`, `ObtenerConsejosBienestar` |
-| REQ-11 | Registro de ingesta: agua y calorías diarias | Media | ✅ Completado | `RegistroDiarioPage.xaml` (mismos campos) |
+### Requerimientos Funcionales
+
+| ID | Requerimiento | Estado | Detalle |
+|----|---------------|--------|---------|
+| REQ-01 | Gestión de usuarios | ✅ Completado | Login, registro y sesión persistente |
+| REQ-02 | Perfil corporal | ✅ Completado | Formulario con peso, altura, edad, objetivo + cálculo de IMC |
+| REQ-03 | Generación de rutinas | ✅ Completado | Dashboard dinámico según día de la semana |
+| REQ-04 | Guía multimedia | ✅ Completado | Catálogo con imágenes y GIFs animados |
+| REQ-05 | Registro de entrenamiento | ✅ Completado | Guarda peso, agua, calorías y WOD completado |
+| REQ-06 | Calendario semanal | ✅ Completado | Lista de rutinas de Lunes a Viernes |
+| REQ-07 | Notificaciones | ❌ No implementado | Fuera del alcance del MVP |
+| REQ-08 | Recomendaciones nutricionales | 🟡 Parcial | Se muestran 2 planes (Low-Carb y Keto) con su detalle, pero **NO se filtran automáticamente según el objetivo del usuario**. La tabla `planes_alimenticios` ya contiene el campo `objetivo_asociado`, por lo que la implementación sería directa. |
+| REQ-09 | Dietas especiales | ✅ Completado | Low-Carb y Keto con detalle completo |
+| REQ-10 | Favoritos | ✅ Completado | Agregar, quitar y listar rutinas favoritas |
+| REQ-11 | Consejos de bienestar | ✅ Completado | Tips con filtro por categoría (Salud, Entrenamiento, Nutrición) |
+| REQ-12 | Registro de ingesta | ✅ Completado | Agua y calorías en el registro diario |
+| REQ-13 | Panel de estadísticas | ❌ No implementado | Los datos se guardan en `registros_diarios` pero no se grafican |
+
+### Requerimientos No Funcionales
+
+| ID | Requerimiento | Estado |
+|----|---------------|--------|
+| REQ-14 | Disponibilidad 99% | ✅ Completado (Aiven Cloud con SLA) |
+| REQ-15 | Seguridad de datos | ✅ Completado (SSL + BCrypt + parametrización) |
+| REQ-16 | Rendimiento < 3 seg | ✅ Completado (índices + async/await) |
+| REQ-17 | Compatibilidad Android | ✅ Completado (APK firmado) |
+| REQ-18 | Escalabilidad | ✅ Completado (arquitectura cliente-servidor) |
+
+**Cobertura funcional: 10 de 13 completados (77%)**
+**Cobertura total: 15 de 18 completados (83%)**
 
 ---
 
-## ✅ Requerimientos No Funcionales
+### ⚠️ Nota sobre REQ-08 (Recomendaciones nutricionales)
 
-| ID | Requerimiento | Prioridad | Estado | Evidencia |
-|----|---------------|-----------|--------|-----------|
-| REQ-12 | Disponibilidad del servicio 99% | Alta | ✅ Completado | Base de datos en Aiven Cloud con SLA |
-| REQ-13 | Seguridad de datos de usuarios | Alta | ✅ Completado | SSL/TLS obligatorio, BCrypt (en producción) |
-| REQ-14 | Rendimiento: respuesta en menos de 3 segundos | Alta | ✅ Completado | Índices en la base de datos, programación asíncrona |
-| REQ-15 | Compatibilidad con Android | Media | ✅ Completado | APK firmado, probado en Android |
-| REQ-16 | Escalabilidad | Media | ✅ Completado | Arquitectura cliente-servidor con PostgreSQL |
+El requerimiento REQ-08 **no está completamente implementado**. Lo que sí existe:
 
+- ✅ Se muestran 2 planes alimenticios (Low-Carb y Keto) en el Dashboard.
+- ✅ Cada plan tiene su pantalla de detalle con información completa.
+- ✅ La tabla `planes_alimenticios` incluye el campo `objetivo_asociado` con valores como "Pérdida de peso" o "Aumento muscular".
 
+Lo que **falta** para completarlo:
+
+- ❌ El Dashboard **no filtra automáticamente** los planes según el `objetivo_fisico` del usuario.
+- ❌ Un usuario con objetivo "Aumento muscular" ve los mismos planes que uno con "Pérdida de peso".
+- ❌ No hay suficiente variedad para cubrir todos los casos
+  
 # PRUEBAS DEL PROYECTO FORGE
 
 Documentación de las pruebas realizadas durante el desarrollo.
