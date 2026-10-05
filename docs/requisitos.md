@@ -120,12 +120,15 @@ La base de datos está compuesta por **10 tablas normalizadas en Tercera Forma N
 
 ### Diagrama Entidad-Relación (resumido)
 usuarios (1) ──── (1) perfiles_corporales
+
 │
 ├──── () favoritos () ──── (1) rutinas
+
 │ │
 │ └────── (1) recetas
 │
 └──── () registros_diarios () ──── (1) rutinas
+
 
 rutinas () ──── () ejercicios
 (vía rutinas_ejercicios)
