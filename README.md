@@ -288,6 +288,17 @@ Documentación final del proyecto FORGE — Entrenamiento CrossFit y Nutrición 
 - **I (Interface Segregation):** los métodos del servicio son específicos.
 - **D (Dependency Inversion):** las páginas instancian `DatabaseService` (inyección).
 
+### Patrones de diseño aplicados
+
+FORGE implementa **4 patrones de diseño** reales y verificables en el código:
+
+| # | Patrón | Dónde se aplica |
+|---|--------|-----------------|
+| 1 | **MVC** (Model-View-Controller) | Carpeta `Models/`, archivos `.xaml` (View) y `.xaml.cs` (Controller) |
+| 2 | **Repository** | `Services/DatabaseService.cs` — centraliza el acceso a datos |
+| 3 | **Singleton (static)** | `Services/SessionService.cs` — clase estática con una única instancia |
+| 4 | **Dependency Injection** | Constructor de cada pantalla (`_databaseService = new DatabaseService()`) |
+
 ---
 
 ## 🚀 Recomendaciones para futuras versiones
