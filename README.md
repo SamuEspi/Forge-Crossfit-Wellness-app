@@ -191,7 +191,7 @@ Se utilizó asistencia de IA durante el desarrollo para:
 1. Clonar el repositorio.
 2. Copiar `Services/DbConfig.example.cs` a `Services/DbConfig.cs`.
 3. Rellenar las credenciales de PostgreSQL en ese archivo.
-4. Abrir `Forge Crossfit.sln` en Visual Studio.
+4. Abrir `CrossfitWellnessApp.slnx` en Visual Studio.
 5. Compilar → Limpiar solución.
 6. Compilar → Reconstruir solución.
 7. Ejecutar en emulador Android o dispositivo físico.
