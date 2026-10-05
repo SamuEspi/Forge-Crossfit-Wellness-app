@@ -1,64 +1,172 @@
-# Requisitos del sistema
+# 📋 REQUISITOS DEL PROYECTO FORGE
 
-## Actores
+Documento de especificación de requerimientos funcionales, no funcionales, actores, necesidades y requisitos de datos del sistema FORGE.
 
-### Usuario
+---
 
-El usuario es la persona que utiliza la aplicación para consultar
-ejercicios, rutinas, recomendaciones y registrar información relacionada
-con su bienestar.
+## 🎯 Alcance del proyecto
 
-## Necesidades del usuario
+FORGE es una aplicación móvil Android que integra entrenamiento funcional tipo CrossFit, guía multimedia de ejercicios, planes nutricionales y seguimiento de progreso físico, con backend en PostgreSQL alojado en la nube.
 
-- Crear una cuenta.
-- Iniciar sesión.
-- Consultar ejercicios.
-- Consultar rutinas.
-- Guardar elementos favoritos.
-- Consultar recomendaciones.
-- Registrar información diaria.
-- Consultar información de bienestar.
-- Administrar su perfil.
+---
 
-## Requisitos funcionales
+## 🧩 Necesidades identificadas
 
-### RF01 - Registro
+Los atletas de CrossFit suelen usar múltiples aplicaciones separadas para entrenar, contar calorías, ver rutinas y registrar su progreso. Esto genera:
 
-El sistema debe permitir al usuario crear una cuenta.
+- **Fragmentación:** datos dispersos en varias apps.
+- **Pérdida de información:** registros que no se centralizan.
+- **Falta de seguimiento integral:** no hay una visión unificada del progreso.
+- **Dificultad para consultar rutinas:** las rutinas no están organizadas por día.
+- **Falta de guía visual:** muchos ejercicios no tienen imágenes o GIFs explicativos.
 
-### RF02 - Inicio de sesión
+FORGE resuelve estas necesidades centralizando **entrenamiento, nutrición, bienestar y progreso** en una sola aplicación con backend en la nube.
 
-El sistema debe permitir al usuario iniciar sesión.
+---
 
-### RF03 - Consulta de ejercicios
+## 👥 Actores del sistema
 
-El sistema debe permitir consultar los ejercicios disponibles.
+| Actor | Rol | Interacción con el sistema |
+|-------|-----|----------------------------|
+| **Usuario (Atleta)** | Persona que usa la app | Se registra, inicia sesión, consulta rutinas, registra progreso, marca favoritos |
+| **Administrador** | Carga datos maestros | Carga rutinas, ejercicios, planes alimenticios y consejos en la base de datos (implícito, no hay interfaz de admin en la app) |
+| **Base de Datos** | Almacena información | Recibe consultas y devuelve datos. Gestiona integridad referencial |
+| **Aiven Cloud** | Hosting de la BD | Provee el servicio PostgreSQL con SSL y respaldos automáticos |
+| **Wikimedia / Tenor** | Fuente multimedia | Provee las imágenes y GIFs de los ejercicios vía URLs |
 
-### RF04 - Consulta de rutinas
+---
 
-El sistema debe permitir consultar las rutinas disponibles.
+## 🎯 Funciones principales por actor
 
-### RF05 - Favoritos
+### Usuario (Atleta)
 
-El sistema debe permitir guardar y consultar elementos favoritos.
+- Registrarse en la app.
+- Iniciar y cerrar sesión.
+- Consultar el WOD del día (entrenamiento diario).
+- Explorar el catálogo completo de ejercicios con imágenes.
+- Ver el detalle de un ejercicio (imagen grande + descripción).
+- Consultar el calendario semanal con todas las rutinas.
+- Ver el detalle de una rutina (ejercicios, series y repeticiones).
+- Registrar peso, agua, calorías y WOD completado.
+- Editar el perfil corporal (peso, altura, edad, objetivo).
+- Marcar rutinas como favoritas.
+- Leer consejos de bienestar filtrados por categoría.
 
-### RF06 - Perfil
+### Administrador
 
-El sistema debe permitir consultar y modificar información del perfil.
+- Cargar rutinas, ejercicios, planes y consejos en la base de datos.
+- Actualizar la información existente.
+- Gestionar la base de datos PostgreSQL.
 
-### RF07 - Bienestar
+### Base de Datos
 
-El sistema debe permitir consultar información relacionada con el bienestar.
+- Almacenar todos los datos de usuarios, rutinas, ejercicios, planes y progreso.
+- Garantizar integridad referencial mediante FOREIGN KEY.
+- Aplicar restricciones de validación (CHECK, UNIQUE).
+- Optimizar consultas mediante índices.
 
-### RF08 - Recomendaciones
+---
 
-El sistema debe mostrar recomendaciones relacionadas con el objetivo
-seleccionado por el usuario.
+## ✅ Requerimientos Funcionales
 
-## Requisitos no funcionales
+| ID | Requerimiento | Prioridad | Estado |
+|----|---------------|-----------|--------|
+| REQ-01 | Gestión de usuarios: registro e inicio de sesión con correo y contraseña | Alta | ✅ Completado |
+| REQ-02 | Perfil corporal: peso, altura, edad y objetivo físico | Alta | ✅ Completado |
+| REQ-03 | Generación de rutinas según día de la semana | Alta | ✅ Completado |
+| REQ-04 | Guía multimedia: imágenes y GIFs de cada ejercicio | Media | ✅ Completado |
+| REQ-05 | Registro de entrenamiento: guardar progreso diario | Alta | ✅ Completado |
+| REQ-06 | Calendario semanal de rutinas | Media | ✅ Completado |
+| REQ-07 | Notificaciones de recordatorio | Media | ❌ No implementado |
+| REQ-08 | Recomendaciones nutricionales por objetivo | Alta | 🟡 Parcial | Se muestran planes pero no se filtran por objetivo del usuario y no hay mucha variedad para recomendar|
+| REQ-09 | Dietas especiales: Low-Carb y Keto | Media | ✅ Completado |
+| REQ-10 | Favoritos: marcar rutinas y recetas | Baja | ✅ Completado |
+| REQ-11 | Consejos de bienestar: salud, entrenamiento y nutrición | Baja | ✅ Completado |
+| REQ-12 | Registro de ingesta: agua y calorías diarias | Media | ✅ Completado |
+| REQ-13 | Panel de estadísticas del progreso | Media | ❌ No implementado |
 
-- La aplicación debe presentar una interfaz sencilla.
-- La aplicación debe permitir navegar entre sus diferentes módulos.
-- La información de los usuarios debe manejarse de forma segura.
-- El sistema debe mantener una estructura organizada y modular.
-- El código debe mantenerse dentro de una arquitectura fácil de mantener.
+---
+
+## ✅ Requerimientos No Funcionales
+
+| ID | Requerimiento | Prioridad | Estado |
+|----|---------------|-----------|--------|
+| REQ-14 | Disponibilidad del servicio 99% | Alta | ✅ Completado |
+| REQ-15 | Seguridad de datos: SSL, BCrypt, consultas parametrizadas | Alta | ✅ Completado |
+| REQ-16 | Rendimiento: respuesta en menos de 3 segundos | Alta | ✅ Completado |
+| REQ-17 | Compatibilidad con Android | Media | ✅ Completado |
+| REQ-18 | Escalabilidad del sistema | Media | ✅ Completado |
+
+---
+
+## 🗄️ Requisitos de datos / Base de datos
+
+### Modelo de datos
+
+La base de datos está compuesta por **10 tablas normalizadas en Tercera Forma Normal (3FN)**:
+
+| Tabla | Propósito | Relaciones |
+|-------|-----------|------------|
+| `usuarios` | Credenciales de acceso | 1:1 con `perfiles_corporales`, 1:N con `registros_diarios` y `favoritos` |
+| `perfiles_corporales` | Datos físicos del usuario | 1:1 con `usuarios` (relación obligatoria) |
+| `ejercicios` | Catálogo de ejercicios | M:N con `rutinas` vía `rutinas_ejercicios` |
+| `rutinas` | Rutinas por día y nivel | M:N con `ejercicios`, 1:N con `registros_diarios` |
+| `rutinas_ejercicios` | Tabla intermedia M:N | Contiene series y repeticiones |
+| `planes_alimenticios` | Planes nutricionales | 1:N con `recetas` |
+| `recetas` | Recetas por plan | N:1 con `planes_alimenticios`, N:M con `usuarios` vía `favoritos` |
+| `favoritos` | Favoritos del usuario | N:M entre `usuarios` y `rutinas`/`recetas` |
+| `seccion_bienestar` | Tips de bienestar | Independiente |
+| `registros_diarios` | Progreso diario del usuario | N:1 con `usuarios` y `rutinas` |
+
+### Diagrama Entidad-Relación (resumido)
+usuarios (1) ──── (1) perfiles_corporales
+│
+├──── () favoritos () ──── (1) rutinas
+│ │
+│ └────── (1) recetas
+│
+└──── () registros_diarios () ──── (1) rutinas
+
+rutinas () ──── () ejercicios
+(vía rutinas_ejercicios)
+
+planes_alimenticios (1) ──── (*) recetas
+seccion_bienestar (tabla independiente)
+
+text
+
+### Características técnicas
+
+- **Identificadores:** UUID generados automáticamente con `gen_random_uuid()`.
+- **Restricciones de integridad:**
+  - `CHECK` para validar valores (niveles, categorías, pesos positivos).
+  - `FOREIGN KEY` con `ON DELETE CASCADE` y `ON DELETE SET NULL`.
+  - `UNIQUE` compuesto para evitar duplicados (usuario + fecha, usuario + rutina).
+- **Índices estratégicos:**
+  - `idx_usuarios_correo`
+  - `idx_registros_diarios_usuario_fecha`
+  - `idx_seccion_bienestar_categoria`
+- **Cifrado:** conexión SSL/TLS obligatoria hacia Aiven Cloud.
+- **Normalización:** 3FN para evitar redundancia y dependencias innecesarias.
+
+---
+
+## 📊 Resumen de cumplimiento
+
+| Categoría | Total | Completados | Parciales | Pendientes |
+|-----------|-------|-------------|-----------|------------|
+| Funcionales | 13 | 10 | 1 | 2 |
+| No funcionales | 5 | 5 | 0 | 0 |
+| **Total** | **18** | **15** | **1** | **2** |
+
+**Cobertura global: 83%**
+
+---
+
+## 📅 Fecha
+
+Octubre 2026
+
+## 📄 Estado
+
+Documento final — Requisitos del proyecto FORGE.
