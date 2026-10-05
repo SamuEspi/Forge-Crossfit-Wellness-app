@@ -300,11 +300,10 @@ Documentación final del proyecto FORGE — Entrenamiento CrossFit y Nutrición 
 
 ### Mediano plazo (meses)
 
-- Implementar **panel de estadísticas** con gráficos (`Microcharts.Maui`).
-- Añadir **filtrado nutricional** según el objetivo del usuario.
-- Implementar **notificaciones push** con `Plugin.LocalNotification`.
-- Añadir **autenticación de dos factores (2FA)**.
-
+- Implementar el filtrado automático de planes alimenticios según el `objetivo_fisico` del usuario. La tabla `planes_alimenticios` ya tiene el campo `objetivo_asociado`, así que solo hace falta la consulta filtrada y la lógica en el Dashboard.
+- Implementar **panel de estadísticas** con gráficos (`Microcharts.Maui`) para cubrir el REQ-13.
+- Añadir **notificaciones push** con `Plugin.LocalNotification` para cubrir el REQ-07.
+- Implementar **autenticación de dos factores (2FA)**.
 ### Largo plazo (producción)
 
 - **Certificación SSL con dominio propio.**
