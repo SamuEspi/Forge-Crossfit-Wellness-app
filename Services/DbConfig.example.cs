@@ -1,7 +1,7 @@
 ﻿namespace CrossfitWellnessApp.Services;
 
 // 📋 Copia este archivo como DbConfig.cs y rellena tus credenciales
-public static class DbConfigExample
+public static class DbConfig
 {
     public const string ConnectionString =
         "Host=TU_HOST.aivencloud.com;" +
